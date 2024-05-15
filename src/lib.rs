@@ -34,8 +34,8 @@ pub trait Context<T, E>: crate::context::private::Sealed {
 }
 
 pub trait ContextExt<T, E>: Context<T, E> {
-    /// t is a shorthand for `track`. It adds location information to the error.
-    fn t(self) -> Result<T, Error>;
+    /// c is a shorthand for `context`. It adds location information to the error.
+    fn c(self) -> Result<T, Error>;
 }
 
 #[allow(non_snake_case)]

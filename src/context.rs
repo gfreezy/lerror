@@ -41,7 +41,7 @@ where
     R: Context<T, E>,
 {
     #[track_caller]
-    fn t(self) -> Result<T, Error> {
+    fn c(self) -> Result<T, Error> {
         self.context("")
     }
 }
