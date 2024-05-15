@@ -2,7 +2,7 @@ use lerror::{bail, Context, ContextExt, Result};
 
 #[test]
 fn a() -> Result<()> {
-    b().t()?;
+    b().c()?;
     bail!("permission denied for accessing {}", "resource");
     Ok(())
 }
