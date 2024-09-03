@@ -14,3 +14,10 @@ fn b() -> Result<()> {
 fn c() -> Result<()> {
     bail!("Image not found");
 }
+
+#[test]
+fn test_io_error() -> Result<()> {
+    let err: Result<(), std::io::Error> = Ok(());
+    let _ = err?;
+    Ok(())
+}

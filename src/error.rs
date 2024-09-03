@@ -76,3 +76,13 @@ impl Error {
         Error::from_display(message)
     }
 }
+
+impl<E> From<E> for Error
+where
+    E: StdError + Send + Sync + 'static,
+{
+    #[cold]
+    fn from(error: E) -> Self {
+        Error::new(error)
+    }
+}
