@@ -1,6 +1,5 @@
 use lerror::{bail, Context, ContextExt, Result};
 
-#[test]
 fn a() -> Result<()> {
     b().c()?;
     bail!("permission denied for accessing {}", "resource");
@@ -17,7 +16,15 @@ fn c() -> Result<()> {
 
 #[test]
 fn test_io_error() -> Result<()> {
-    let err: Result<(), std::io::Error> = Ok(());
-    let _ = err?;
+    let c = c().unwrap_err();
+    assert_eq!(
+        format!("{:?}", c),
+        "lerror::Error\n\n    0: tests/test.rs:15:5\n       Image not found\n"
+    );
+    let b = b().unwrap_err();
+    assert_eq!(
+        format!("{:?}", b),
+        "lerror::Error\n\n    0: tests/test.rs:10:9\n       File not found\n    1: tests/test.rs:15:5\n       Image not found\n"
+    );
     Ok(())
 }

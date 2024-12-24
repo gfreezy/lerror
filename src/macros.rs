@@ -39,6 +39,28 @@ macro_rules! bail {
     };
 }
 
+#[macro_export]
+macro_rules! du {
+    ($err:expr $(,)?) => {
+        match $err {
+            Ok(v) => v,
+            Err(e) => return Err(e).context(""),
+        }
+    };
+    ($err:expr, $fmt:expr $(,)?) => {
+        match $err {
+            Ok(v) => v,
+            Err(e) => return Err(e).context($fmt),
+        }
+    };
+    ($err:expr, $fmt:expr, $($arg:tt)*) => {
+        match $err {
+            Ok(v) => v,
+            Err(e) => return Err(e).context($crate::__private::format!($fmt, $($arg)*)),
+        }
+    };
+}
+
 macro_rules! __ensure {
     ($ensure:item) => {
         /// Return early with an error if a condition is not satisfied.
