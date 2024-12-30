@@ -1,5 +1,5 @@
 use crate::error::ContextError;
-use crate::{Context, ContextExt, Error, StdError};
+use crate::{Context, Error, StdError};
 use core::convert::Infallible;
 use core::fmt::{self, Debug, Display, Write};
 
@@ -33,16 +33,6 @@ mod ext {
         {
             self.context(context)
         }
-    }
-}
-
-impl<T, R, E> ContextExt<T, E> for R
-where
-    R: Context<T, E>,
-{
-    #[track_caller]
-    fn c(self) -> Result<T, Error> {
-        self.context("")
     }
 }
 

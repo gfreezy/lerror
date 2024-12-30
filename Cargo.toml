@@ -1,8 +1,5 @@
-[package]
-name = "lerror"
-version = "0.1.1"
-edition = "2021"
-license = "MIT"
-description = "A library for creating error types reporting file name, line and column instead of backtrace."
-repository = "https://github.com/gfreezy/lerror"
-homepage = "https://github.com/gfreezy/lerror"
+[workspace]
+members = [
+    "lerror-macros", "lerror"
+]
+resolver = "2"

@@ -33,11 +33,6 @@ pub trait Context<T, E>: crate::context::private::Sealed {
         F: FnOnce() -> C;
 }
 
-pub trait ContextExt<T, E>: Context<T, E> {
-    /// c is a shorthand for `context`. It adds location information to the error.
-    fn c(self) -> Result<T, Error>;
-}
-
 #[allow(non_snake_case)]
 pub fn Ok<T>(t: T) -> Result<T> {
     Result::Ok(t)
