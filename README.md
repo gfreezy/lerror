@@ -11,8 +11,9 @@ use lerror::{bail, Context, ContextExt, Result};
 
 #[test]
 fn a() -> Result<()> {
-    b().c()?;  // You need to call `c()` to add the current line to backtrace without context. Or you can call `context()` to add string context.
+    b().context("custom error message")?;  // You need to call `context()` to add the current line to backtrace with string context.
     bail!("permission denied for accessing {}", "resource");
+    c().with_context(|| "custom error message")?;  // You can also call `with_context()` to add the current line to backtrace with string context.
     Ok(())
 }
 
@@ -44,6 +45,7 @@ This crate provides a macro for automatically adding context to all `?` operator
 
 ```rust
 use lerror_macros::lerror_trace;
+use lerror::{Result, Context};
 
 #[lerror_trace]
 fn a() -> Result<()> {

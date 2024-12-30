@@ -14,6 +14,8 @@ pub struct Error {
     inner: LinkedList<ContextError<String>>,
 }
 
+pub use lerror_macros::lerror_trace;
+
 #[doc(no_inline)]
 pub use lerror as format_err;
 
